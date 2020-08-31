@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Persongalleri </title>
+    <style>
+        h2,
+        h3 {
+            font-family: monospace;
+        }
+
+        section {
+            margin: 0 auto;
+
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        article {
+            border: 1px solid #333;
+            padding: 10px;
+
+        }
+
+        img {
+            max-width: 30%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section>
+
+    </section>
+
+    <template>
+        <article>
+            <img src="" alt="">
+            <h3 class="navn"></h3>
+            <h2 class="efternavn"></h2>
+            <p class="by"></p>
+            <p class="land"></p>
+            <p class="job"></p>
+            <p class="hobby"></p>
+
+        </article>
+    </template>
+    <script>
+        let filter = "k";
+        let personer;
+        document.addEventListener("DOMContentLoaded", loadJSON)
+
+
+        async function loadJSON() {
+            const JSONData = await fetch("https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json");
+            personer = await JSONData.json();
+            visPersoner();
+        }
+
+        function visPersoner() {
+            console.log(personer);
+
+
+            const templatePointer = document.querySelector("tempalte");
+            const lifePointer = document.querySelector("#list");
+            personer.feed.entry.forEach(person => {
+                if (filter == person.gsx$by.$t;) {
+                    console.log(person);
+                    const minKlon = templatePointer.cloneNode(true).content;
+                    minKlon.querySelector("hw").textContent = personer.gsx$by.$t;
+                    minKlon.querySelector("img").src = person.gsx$by.$t;;
+                    listPointer.appendChild(minKlon);
+                }
+            })
+
+    </script>
+</body>
+
+</html>
